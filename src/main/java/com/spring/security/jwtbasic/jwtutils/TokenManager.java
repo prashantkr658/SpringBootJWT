@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +21,7 @@ public class TokenManager implements Serializable{
 	 */
 	private static final long serialVersionUID = 7008375124389347049L;
 	
+	@Value(value = "${secret}")
 	private String jwtSecret;
 	
 	public String generateJwtToken(UserDetails userDetails) {
