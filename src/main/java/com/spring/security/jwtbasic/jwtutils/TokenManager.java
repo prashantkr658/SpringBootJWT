@@ -1,11 +1,13 @@
 package com.spring.security.jwtbasic.jwtutils;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.token.Token;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -28,7 +30,7 @@ public class TokenManager implements Serializable{
 		Map<String, Object> claims = new HashMap<>();
 		return Jwts.builder().setClaims(claims).setSubject(userDetails.getUsername())
 				.setIssuedAt(new Date(System.currentTimeMillis()))
-				.setExpiration(new Date(System.currentTimeMillis()))
+				.setExpiration(java.sql.Date.valueOf(LocalDate.now().plusWeeks(2)))
 				.signWith(SignatureAlgorithm.HS512, jwtSecret).compact();
 	}
 	
